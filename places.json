@@ -1,0 +1,81 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CpQCDwEAAJwdqLU_q4CMC9j-DOFIiwmwpP8ICAF_lHHKpWrNLfYsLS0hubKFTbau5sp7Tc_vC2bftXqZSRfq4uMk34-nE1f3weBRv77ZvsUhQn1MvJCfW6pNFA6zrDP_lPLBQZVrGVePIGhW8g485WnZdAHUyKpr4jjJ6hiOh2R6MxVBTYHyRuy5mDa-NGx4zQXDsHGSejOPH6BmPUoyfb-2MmRo1kcYABkBZRAaXpDmTtoXLmX8GxELbMOOAjEJ8Vzxdk-4GQkzoDYB1YwHBR1JXzxlawX0DdUyaJKjLWGjvt8GOwF8d9KVTF0r528jDCheFjvRgxOGMeYq1IrUx9lBofHH4sAX2plD6BGumN40mdBkDKVMEhC8pyLxL6t51mflBEc_WkF6GhTsH0kHwldrZYDnyUZ78TU9zeiiqg",
+  "results": [
+    {
+      "formatted_address": "3818 Sunset Blvd, Los Angeles, CA 90026, USA",
+      "geometry": {
+        "location": {
+          "lat": 25.01970098371239,
+          "lng": 121.53887271881102
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 34.09258172989272,
+            "lng": -118.2780556701073
+          },
+          "southwest": {
+            "lat": 34.08988207010728,
+            "lng": -118.2807553298927
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "12312rvwefkjbiudsboquwbdo",
+      "chineseName": "克利巴椰子",
+      "englishName": "Giriba Palm, Queen Palm",
+      "scientificName": "Syagrus romanzoffiana",
+      "growthFrom": "喬木",
+      "htmlEditor": "",
+      "fileCount": null,
+      "common": "off",
+      "seasonSpring": "off",
+      "seasonSummer": "off",
+      "seasonAutumn": "off",
+      "seasonWinter": "off",
+      "link": null
+    },
+    {
+      "formatted_address": "3818 Sunset Blvd, Los Angeles, CA 90026, USA",
+      "geometry": {
+        "location": {
+          "lat": 25.01870098371239,
+          "lng": 121.53887271881102
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 34.09258172989272,
+            "lng": -118.2780556701073
+          },
+          "southwest": {
+            "lat": 34.08988207010728,
+            "lng": -118.2807553298927
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "1113d3dd74339f965caae39387dd808a9e877bc2e",
+      "name": "大王椰子",
+      "opening_hours": {
+        "open_now": false,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 2336,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100540448898812651487/photos\">Roman Roze</a>"
+          ],
+          "photo_reference": "CmRaAAAA69UVwaJnUQXQUSSX9IfB3b29opNIohkexsGAGoHTD5Lyg24lhpBtaiNlrgihstR-k7Su9Vgbc8-eE5qHEdeLVY1QTfiuyS9TPp3e2GMM_grW2FtrgrFQGtMJSeJ336cPEhCVHYfFzoOgrrKdXlk34rJiGhSXSv_XG1q1CtOrWJjWQrxJmLvIPg",
+          "width": 3504
+        }
+      ],
+      "place_id": "ChIJj62e80jHwoARusJT4mjohWw",
+      "price_level": 2,
+      "rating": "M 0-0_0773",
+      "reference": "CmRbAAAAM9_YQ6Dt9T69zucczidzOd6HU2vmzaXvTG-lJ89KyBlJVBJ0aEfar2Exre4iDWKHjExUshYSpAXEzA-YqotVnOt4XznKY_vkD520XK5nzFz5v5IefUe6FDBqZPzYlxRDEhAgQvwzNjwC49WWlyoMKza5GhS6r-VIl1lXdMl_JEW67yL7fPkZdg",
+      "types": ["restaurant", "food", "point_of_interest", "establishment"]
+    }
+  ],
+  "status": "OK"
+}

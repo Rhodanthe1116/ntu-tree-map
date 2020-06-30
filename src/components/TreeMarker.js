@@ -12,13 +12,14 @@ const useStyles = makeStyles({
 
     marker: {
         cursor: 'pointer',
+
     },
 })
 
 
 
 // Marker component
-function TreeMarker({ show, tree, onLearnMoreClick }) {
+function TreeMarker({ show, tree, onDonateClick, onLearnMoreClick }) {
     const classes = useStyles()
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -63,6 +64,7 @@ function TreeMarker({ show, tree, onLearnMoreClick }) {
                             <TreeInfoWindow
                                 tree={tree}
                                 onMouseLeave={handleMouseLeave}
+                                onDonateClick={onDonateClick}
                                 onLearnMoreClick={onLearnMoreClick}
                             />
                         </div>

@@ -8,7 +8,10 @@ import Drawer from '@material-ui/core/Drawer'
 import TreeDetail from './TreeDetail'
 
 const useStyles = makeStyles((theme) => ({
-   
+    drawer: {
+        width: 400,
+        maxWidth: '90vw',
+    },
 }))
 
 export default function TreeDetailDrawer({ open, onClose, tree }) {
@@ -33,8 +36,14 @@ export default function TreeDetailDrawer({ open, onClose, tree }) {
     }
     return (
         <div>
-            <Drawer anchor="left" open={open} onClose={onClose}>
-                <TreeDetail tree={tree} />
+            <Drawer
+                anchor="left"
+                open={open}
+                onClose={onClose}
+            >
+                <div className={classes.drawer}>
+                    <TreeDetail tree={tree} />
+                </div>
             </Drawer>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 // components
@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FloatingNavgationBar({ filter, onFilterChange }) {
     const classes = useStyles();
-    const [open, setOpen] = useState(false)
 
     return (
         <div className={classes.floatingNavgationBar}>
@@ -70,7 +69,7 @@ export default function FloatingNavgationBar({ filter, onFilterChange }) {
                     <Typography
                         variant="h6"
                     >
-                        臺大樹語
+                        護樹臺大
                     </Typography>
                 </Fab>
             </Zoom>

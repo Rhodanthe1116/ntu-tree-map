@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import isEmpty from 'lodash.isempty';
 
 // examples:
@@ -8,6 +8,7 @@ import GoogleMap from './GoogleMap';
 
 // my component
 import TreeMarker from './TreeMarker'
+import DonateDialog from './DonateDialog'
 
 const ntuLocation = {
     center: {
@@ -44,23 +45,32 @@ function TreeMap({ trees, onLearnMoreClick }) {
     //     console.log(newTrees)
     //     setTrees(newTrees)
     // };
-
+    const [donate, setDonate] = useState(false)
+    const [donatedTree, setDonatedTree] = useState(null)
+    function donateTree(tree) {
+        setDonatedTree(tree)
+        setDonate(true)
+    }
 
     return (
-        <GoogleMap
-            defaultZoom={ntuLocation.zoom}
-            defaultCenter={NTU_CENTER}
-        >
-            {!isEmpty(trees) && trees.map(tree =>
-                (<TreeMarker
-                    key={tree.id}
-                    lat={tree.lat}
-                    lng={tree.lng}
-                    show={true}
-                    tree={tree}
-                    onLearnMoreClick={onLearnMoreClick}
-                />))}
-        </GoogleMap>
+        <>
+            <GoogleMap
+                defaultZoom={ntuLocation.zoom}
+                defaultCenter={NTU_CENTER}
+            >
+                {!isEmpty(trees) && trees.map(tree =>
+                    (<TreeMarker
+                        key={tree.id}
+                        lat={tree.lat}
+                        lng={tree.lng}
+                        show={true}
+                        tree={tree}
+                        onDonateClick={donateTree}
+                        onLearnMoreClick={onLearnMoreClick}
+                    />))}
+            </GoogleMap>
+            <DonateDialog open={donate} tree={donatedTree} onClose={() => setDonate(false)} />
+        </>
     );
 }
 

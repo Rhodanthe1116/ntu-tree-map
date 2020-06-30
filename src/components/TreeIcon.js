@@ -1,16 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { ReactComponent as TreeSvg } from '../img/tree.svg';
-
-const useStyles = makeStyles({
-
-    marker: {
-        cursor: 'pointer',
-    },
-})
-
 
 function TreeIcon(props) {
     return (

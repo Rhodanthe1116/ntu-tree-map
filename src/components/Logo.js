@@ -16,6 +16,7 @@ function Logo(props) {
         <img
             {...props}
             className={classes.logo}
+            alt="tree logo"
             src="https://image.flaticon.com/icons/png/512/2990/2990684.png"
         />
     )

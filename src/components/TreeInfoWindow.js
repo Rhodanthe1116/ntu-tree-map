@@ -2,10 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -29,9 +27,13 @@ const useStyles = makeStyles({
     },
 });
 
-function TreeInfoWindow({ tree, onLearnMoreClick }) {
+function TreeInfoWindow({ tree, onDonateClick, onLearnMoreClick }) {
 
     const classes = useStyles();
+
+    function handleDonateClick() {
+        onDonateClick(tree)
+    }
 
     function handleLearnMoreClick() {
         onLearnMoreClick(tree)
@@ -82,8 +84,9 @@ function TreeInfoWindow({ tree, onLearnMoreClick }) {
                 <Button
                     size="small"
                     color="primary"
-                    href="https://giving.ntu.edu.tw/DonationFormTW.aspx?lang=TW"
-                    target="_blank"
+                    onClick={handleDonateClick}
+                    // href="https://giving.ntu.edu.tw/DonationFormTW.aspx?lang=TW"
+                    // target="_blank"
                 >
                     保護我
                 </Button>

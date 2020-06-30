@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import $ from "jquery";
 
 // components
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
-import CardMedia from '@material-ui/core/CardMedia';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 
 // icons
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
@@ -36,15 +33,23 @@ import Image from 'material-ui-image'
 // my components
 
 const useStyles = makeStyles((theme) => ({
+
     detail: {
         marginTop: theme.spacing(2),
-        width: 400,
+        // width: 400,
+        // maxWidth: '90vw',
+
     },
     divider: {
         marginBottom: theme.spacing(2),
     },
     icon: {
         color: theme.palette.primary.main
+    },
+    treeDetail: {
+        // height: 60,
+        // marginBottom: 16,
+        textOverflow: 'normal',
     }
 
 }));
@@ -60,13 +65,52 @@ function SimpleListItem({ button = false, icon, color = "primary", primary }) {
         </ListItem>
     )
 }
+
+
 export default function TreeDetail({ tree }) {
     const classes = useStyles();
 
+    const treeDetailFallback = `${tree.chineseTreeName}是一種${tree.growthFrom}，樹必定會成為未來世界的新標準。 我們不得不面對一個非常尷尬的事實，那就是，領悟其中的道理也不是那麼的困難。`
+
+    const [treeDetail, setTreeDetail] = useState("")
+
+    useEffect(() => {
+        const proxyurl = "https://damp-cliffs-64400.herokuapp.com/";
+        fetch(proxyurl + `https://zh.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${tree.scientificTreeName}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw new Error('error getting tree detail')
+            })
+            .then(jsonResponse => {
+                let newTreeDetail = jsonResponse.query.pages[Object.keys(jsonResponse.query.pages)[0]].extract
+                const treeDetailLimit = 200
+                newTreeDetail = newTreeDetail.substring(0, treeDetailLimit)
+                setTreeDetail(newTreeDetail)
+            })
+            .catch(e => {
+                setTreeDetail(treeDetailFallback)
+                console.log(e)
+            })
+    })
+
+    useEffect(() => {
+        $(function () {
+            let len = 100; // 超過50個字以"..."取代
+            $(".dotdotdot").each(function (i) {
+                if ($(this).text().length > len) {
+                    $(this).attr("title", $(this).text());
+                    let text = $(this).text().substring(0, len - 1) + "......";
+                    $(this).text(text);
+                }
+            });
+        });
+    }, [treeDetail])
+
     return (
-        <>
+        <div>
             <Carousel
-                width="400px"
                 height="225px"
                 showStatus={false}
                 showThumbs={false}
@@ -101,17 +145,17 @@ export default function TreeDetail({ tree }) {
                     {tree.chineseTreeName + " " + tree.englishTreeName.split(',')[0]}
                 </Typography>
 
-                <Typography variant="body2" color="textSecondary" paragraph>
-                    {`${tree.chineseTreeName}是一種${tree.growthFrom}，\
-                    樹必定會成為未來世界的新標準。 我們不得不面對一個非常尷尬的事實，\
-                    那就是，領悟其中的道理也不是那麼的困難。`}
-                </Typography>
+                <div className={classes.treeDetail}>
+                    <Typography className="dotdotdot" variant="body2" color="textSecondary" paragraph>
+                        {treeDetail}
+                    </Typography>
+                </div>
 
                 <Divider className={classes.divider} />
 
                 <Typography variant="subtitle2">
                     樹木資訊
-                    </Typography>
+                </Typography>
                 <List dense aria-label="tree-detail">
                     <SimpleListItem
                         button={true}
@@ -179,7 +223,7 @@ export default function TreeDetail({ tree }) {
                     />
                 </List>
             </Container>
-        </>
+        </div>
     );
 }
 

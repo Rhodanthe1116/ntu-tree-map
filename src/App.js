@@ -9,14 +9,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // components 
 import Box from '@material-ui/core/Box'
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 // my components
 import TreeMap from './components/TreeMap';
-import TreeAppBar from './components/TreeAppBar'
 import FloatingNavgationBar from './components/FloatingNavgationBar'
 import TreeDetailDrawer from './components/TreeDetailDrawer'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		display: 'flex',
 		flexDirection: 'column',
@@ -26,8 +29,12 @@ const useStyles = makeStyles({
 	main: {
 		width: '100%',
 		height: '100%',
+	},
+	backdrop: {
+		zIndex: theme.zIndex.drawer + 1,
+		color: '#fff',
 	}
-});
+}));
 
 const ntuLocation = {
 	center: {
@@ -44,9 +51,13 @@ function App() {
 
 	const [trees, setTrees] = useState([])
 	const [filter, setFilter] = useState({ type: "all", value: "on" })
-
+	const [error, setError] = useState(null)
 	useEffect(() => {
-		fetch(process.env.NODE_ENV === 'production' ? 'trees.json' : 'final/trees.json')
+		setTrees([])
+
+		const proxyurl = "https://damp-cliffs-64400.herokuapp.com/";
+
+		fetch(proxyurl + 'https://map.ntu.edu.tw/ntutree/permitAll/treeDb/listAll')
 			.then(response => {
 				if (response.ok) {
 					return response.json()
@@ -57,7 +68,7 @@ function App() {
 			.then((jsonResponse) => {
 				let newTrees = jsonResponse.rows
 
-				if (filter.type !== 'all') {
+				if (filter.type !== 'all' && filter.type !== 'area') {
 					newTrees = newTrees.filter(tree => {
 						if (tree[filter.type] === filter.value) {
 							return true
@@ -74,7 +85,7 @@ function App() {
 				setTrees(newTrees)
 			})
 			.catch(error => {
-				alert(error)
+				setError(error.toString())
 			})
 	}, [filter])
 
@@ -103,6 +114,14 @@ function App() {
 					/>
 				</Box>
 			</Box>
+			<Backdrop className={classes.backdrop} open={trees.length === 0}>
+				<CircularProgress color="primary" />
+			</Backdrop>
+			<Snackbar open={error} autoHideDuration={4000} onClose={() => setError(null)}>
+				<Alert onClose={() => setError(null)} severity="error">
+					{error}
+				</Alert>
+			</Snackbar>
 		</ThemeProvider>
 
 	)
